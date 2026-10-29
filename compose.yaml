@@ -8,6 +8,9 @@ services:
       - ./:/app/work
       - fastembed-cache:/root/.cache
     working_dir: /app/work
+    environment:
+      # le téléchargement Xet de Hugging Face échoue dans le conteneur : on garde le téléchargement HTTP classique
+      - HF_HUB_DISABLE_XET=1
     entrypoint: ["jupyter", "nbconvert", "--to", "notebook", "--execute", "--inplace",
                  "--ExecutePreprocessor.kernel_name=python_uv_workspace",
                  "--ExecutePreprocessor.timeout=-1"]
@@ -27,6 +30,7 @@ services:
     working_dir: /app/work
     environment:
       - JUPYTER_TOKEN=uv-docker
+      - HF_HUB_DISABLE_XET=1
     command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 
 volumes:
