@@ -1,0 +1,34 @@
+services:
+  # docker compose run --rm notebook TP2_mesa/TP2Mesa_Simulation_MA.ipynb
+  #   -> exécute le notebook dans le conteneur et enregistre les sorties dans le même fichier
+  notebook:
+    build: .
+    image: sda-python-uv
+    volumes:
+      - ./:/app/work
+      - fastembed-cache:/root/.cache
+    working_dir: /app/work
+    entrypoint: ["jupyter", "nbconvert", "--to", "notebook", "--execute", "--inplace",
+                 "--ExecutePreprocessor.kernel_name=python_uv_workspace",
+                 "--ExecutePreprocessor.timeout=-1"]
+    command: ["TP0_installation/hello.ipynb"]
+
+  # docker compose up -d lab  -> serveur Jupyter sur http://localhost:8888 (les modifications sont enregistrées dans ce dossier)
+  # Dans VS Code : Select Kernel > Existing Jupyter Server > http://localhost:8888/?token=uv-docker > "Python (uv-env)"
+  # (le token est obligatoire : sans lui, VS Code reçoit l'erreur "_xsrf argument missing")
+  lab:
+    image: sda-python-uv
+    build: .
+    ports:
+      - "127.0.0.1:8888:8888"
+    volumes:
+      - ./:/app/work
+      - fastembed-cache:/root/.cache
+    working_dir: /app/work
+    environment:
+      - JUPYTER_TOKEN=uv-docker
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+volumes:
+  # modèles d'embedding téléchargés par FastEmbed (TP4) : gardés entre deux exécutions
+  fastembed-cache:

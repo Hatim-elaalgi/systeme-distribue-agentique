@@ -1,0 +1,14 @@
+# Environnement virtuel (recréé dans l'image Docker avec uv sync)
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# Clé API Groq (jamais publiée)
+.env
+
+# Base vectorielle Chroma du TP4 (recréée à chaque exécution)
+TP4_rag/store/
+
+# Système
+Thumbs.db
+desktop.ini

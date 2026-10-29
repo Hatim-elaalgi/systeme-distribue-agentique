@@ -1,0 +1,31 @@
+[project]
+name = "systeme-distribue-agentique"
+version = "0.1.0"
+description = "TP0 à TP4 du module Système Distribué Agentique (Master S3) — ELAALGI Hatim"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    # TP0 : guide d'installation (uv add ipykernel pandas matplotlib seaborn)
+    "ipykernel>=7.4.0",
+    "ipywidgets>=8.1.9",
+    "jupyterlab>=4.6.4",
+    "matplotlib>=3.11.2",
+    "pandas>=3.0.6",
+    "seaborn>=0.13.2",
+    # TP2 : Mesa 3
+    "mesa>=3,<4",
+    "networkx>=3.7",
+    # TP3 : tokens, LLM, évaluation des prompts
+    "tiktoken>=0.14.0",
+    "langchain>=1.4.7",
+    "langchain-groq>=1.1.3",
+    "python-dotenv>=1.2.4",
+    "scikit-learn>=1.9.1",
+    "tqdm>=4.70.1",
+    # TP4 : RAG
+    "langchain-community>=0.4.2",
+    "langchain-text-splitters>=1.1.3",
+    "pypdf>=6.21.4",
+    "chromadb>=1.5.9",
+    "fastembed>=0.9.1",
+]
