@@ -4,13 +4,13 @@
 
 Tous les notebooks sont exécutés dans le même environnement : un conteneur Docker qui reprend le guide uv du TP0, et dont le kernel Jupyter est accessible depuis VS Code par `localhost`.
 
-| Dossier | Contenu |
-|---|---|
-| [TP0_installation](TP0_installation/) | Guide Python + uv + Jupyter, réalisé dans un conteneur Docker ; `hello.ipynb` et `app.py` |
-| [TP1_python](TP1_python/) | Rappels Python (partie 1) : conversions, conditions, boucles, fonctions, listes, configuration d'un système multi-agents |
-| [TP2_mesa](TP2_mesa/) | Mesa 3 : formation de l'opinion publique, réponses argumentées et mesurées aux 8 questions |
-| [TP3_prompt](TP3_prompt/) | Tokens (`tiktoken`), appel d'un LLM (Groq), analyse de sentiment zero-shot / few-shot / CoT évaluée au micro-F1 |
-| [TP4_rag](TP4_rag/) | RAG sur mon CV (Chroma, FastEmbed), évaluation par un LLM juge |
+| Dossier | Contenu | Résultats détaillés |
+|---|---|---|
+| [TP0_installation](TP0_installation/) | Guide Python + uv + Jupyter, réalisé dans un conteneur Docker ; `hello.ipynb` et `app.py` | [README](TP0_installation/README.md) |
+| [TP1_python](TP1_python/) | Rappels Python (partie 1) : conversions, conditions, boucles, fonctions, listes, configuration d'un système multi-agents | [README](TP1_python/README.md) |
+| [TP2_mesa](TP2_mesa/) | Mesa 3 : formation de l'opinion publique, réponses argumentées et mesurées aux 8 questions | [README](TP2_mesa/README.md) |
+| [TP3_prompt](TP3_prompt/) | Tokens (`tiktoken`), appel d'un LLM (Groq), analyse de sentiment zero-shot / few-shot / CoT évaluée au micro-F1 | [README](TP3_prompt/README.md) |
+| [TP4_rag](TP4_rag/) | RAG sur mon CV (Chroma, FastEmbed), évaluation par un LLM juge | [README](TP4_rag/README.md) |
 
 ## Résultats principaux
 
