@@ -2,21 +2,31 @@
 
 **Étudiant :** ELAALGI Hatim — Master S3
 
-| Dossier | Contenu | État |
-|---|---|---|
-| [TP0_installation](TP0_installation/) | Guide uv + Jupyter, réalisé dans un conteneur Docker (kernel sur `localhost:8888`) | exécuté |
-| [TP1_python](TP1_python/) | Rappels Python (partie 1) | exécuté |
-| [TP2_mesa](TP2_mesa/) | Mesa 3 : formation de l'opinion, réponses aux 8 questions | exécuté |
-| [TP3_prompt](TP3_prompt/) | Tokens, appel LLM (Groq), analyse de sentiment zero-shot / few-shot / CoT | à exécuter |
-| [TP4_rag](TP4_rag/) | RAG sur mon CV + LLM juge | à exécuter |
+Tous les notebooks sont exécutés dans le même environnement : un conteneur Docker qui reprend le guide uv du TP0, et dont le kernel Jupyter est accessible depuis VS Code par `localhost`.
+
+| Dossier | Contenu |
+|---|---|
+| [TP0_installation](TP0_installation/) | Guide Python + uv + Jupyter, réalisé dans un conteneur Docker ; `hello.ipynb` et `app.py` |
+| [TP1_python](TP1_python/) | Rappels Python (partie 1) : conversions, conditions, boucles, fonctions, listes, configuration d'un système multi-agents |
+| [TP2_mesa](TP2_mesa/) | Mesa 3 : formation de l'opinion publique, réponses argumentées et mesurées aux 8 questions |
+| [TP3_prompt](TP3_prompt/) | Tokens (`tiktoken`), appel d'un LLM (Groq), analyse de sentiment zero-shot / few-shot / CoT évaluée au micro-F1 |
+| [TP4_rag](TP4_rag/) | RAG sur mon CV (Chroma, FastEmbed), évaluation par un LLM juge |
+
+## Résultats principaux
+
+- **TP2** — Une règle locale (se rapprocher de la moyenne de ses voisins) produit un consensus global ; α ne règle que la vitesse (7 ticks pour α = 1, plus de 200 pour α = 0.01). Avec un biais de confirmation, on passe à la polarisation (ε = 0.15) puis à la fragmentation (ε = 0.05). Sur un graphe Barabási-Albert, 5 influenceurs têtus font passer l'opinion moyenne de 0.49 à 0.94, contre 0.55 pour 5 utilisateurs isolés.
+- **TP3** — Sur 20 critiques gold, les trois prompts obtiennent 0.90 avec un petit modèle (`allam-2-7b`) comme avec un plus grand (`qwen3.8-27b`), mais sans faire les mêmes erreurs. Sur 10 tirages, le few-shot et le CoT obtiennent 0.915 ± 0.032 : le gain sur le zero-shot est plus petit que la variabilité due aux exemples. Les erreurs restantes viennent du sarcasme et des avis mitigés.
+- **TP4** — Le RAG répond juste à 6 des 7 questions dont la réponse est dans le CV, et répond « Je ne sais pas ! » aux questions absentes ou hors sujet. Le seul échec vient de l'extraction du PDF, qui sépare un projet de sa description. Le LLM juge n'est pas toujours cohérent : 1/5 pour une réponse exacte, et trois notes différentes pour la même abstention.
 
 ## Lancer
 
 ```bash
-cp .env.example .env              # puis coller sa clé Groq
+cp .env.example .env              # puis coller sa clé Groq (TP3 et TP4)
 docker compose build
 docker compose up -d lab          # kernel Jupyter : http://localhost:8888/?token=uv-docker
-docker compose run --rm notebook TP3_prompt/TP3_prompt.ipynb   # exécute un notebook sans interface
+docker compose run --rm notebook TP2_mesa/TP2Mesa_Simulation_MA.ipynb   # exécuter un notebook sans interface
 ```
 
-Les réponses du LLM du TP3 sont mises en cache dans `TP3_prompt/data/cache_llm.json` : une exécution interrompue reprend là où elle s'était arrêtée.
+Dans VS Code : **Select Kernel → Existing Jupyter Server** → `http://localhost:8888/?token=uv-docker` → **Python (uv-env)**. Le détail est dans [TP0_installation/README.md](TP0_installation/README.md).
+
+Les réponses du LLM du TP3 sont enregistrées dans `TP3_prompt/data/cache_llm.json` : le notebook se ré-exécute à l'identique sans nouvel appel à l'API.
