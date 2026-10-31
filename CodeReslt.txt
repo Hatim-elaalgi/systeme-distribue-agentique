@@ -1,0 +1,12 @@
+Generated Python code:
+import math
+
+a,b,c=6,11,-6
+D=b*b-4*a*c
+sqrtD=math.sqrt(D)
+root1=(-b+sqrtD)/(2*a)
+root2=(-b-sqrtD)/(2*a)
+
+Execution result:
+Exact roots: (-11 ± sqrt(265))/12
+Numeric roots: 0.43990171634164216, -2.2732350496749754
